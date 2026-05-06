@@ -1,0 +1,45 @@
+{
+  "discord": {
+    "token": "YOUR_DISCORD_BOT_TOKEN_HERE"
+  },
+  "servers": [
+    {
+      "id": "main",
+      "discord": {
+        "chatChannelId": "123456789012345678"
+      },
+      "rcon": {
+        "host": "127.0.0.1",
+        "port": 29070,
+        "password": "YOUR_RCON_PASSWORD",
+        "timeout": 5000
+      },
+      "chatBridge": {
+        "logFile": "games_mp.log",
+        "gameToDiscordPrefix": "[Main] ",
+        "discordToGamePrefix": "[Discord] ",
+        "messageFormat": "embed"
+      },
+      "embedColor": 5939156
+    },
+    {
+      "id": "pvp",
+      "discord": {
+        "chatChannelId": "987654321098765432"
+      },
+      "rcon": {
+        "host": "192.168.1.100",
+        "port": 29071,
+        "password": "YOUR_RCON_PASSWORD_2",
+        "timeout": 5000
+      },
+      "chatBridge": {
+        "logFile": "server2/games_mp.log",
+        "gameToDiscordPrefix": "[PvP] ",
+        "discordToGamePrefix": "[PvP] ",
+        "messageFormat": "embed"
+      },
+      "embedColor": 16739179
+    }
+  ]
+}

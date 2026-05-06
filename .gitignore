@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+package-lock.json
+.env
+*.log
+.DS_Store
+nul
+
+# Config with secrets
+config.json
+config.local.json
+
+# Logs
+*.log
+command_log.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
