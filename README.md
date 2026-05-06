@@ -240,22 +240,48 @@ The ID looks like a long number (e.g., `123456789012345678`). Paste it into your
 
 ## Process Management (Recommended)
 
-For production, use PM2 to keep the bot running:
+For production, use PM2 to keep the bot running as a daemon with auto-restart on crashes.
+
+### Setup
 
 ```bash
-# Install PM2
-npm install -g pm2
-
-# Start with PM2
-pm2 start bot.js --name jka-bridge
-
-# View logs
-pm2 logs jka-bridge
-
-# Restart on crash
-pm2 restart jka-bridge
-
-# Keep running on reboot
-pm2 save
-pm2 startup
+# Install PM2 (already included in package.json dependencies)
+npm install
 ```
+
+### PM2 Commands
+
+```bash
+# Start the bot as a daemon
+npm run pm2:start
+
+# View real-time logs
+npm run pm2:logs
+
+# View process list
+npm run pm2:list
+
+# Stop the daemon
+npm run pm2:stop
+
+# Restart after updates
+npm run pm2:restart
+
+# Auto-start on system reboot (run once)
+pm2-startup  # Windows: pm2-service-install
+pm2 save
+```
+
+### Or use ecosystem.config.js directly
+
+```bash
+pm2 start ecosystem.config.js
+pm2 logs
+pm2 restart mbii-bot
+```
+
+### Features
+- Single instance (no clustering)
+- Auto-restart on crash (up to 10 restarts, then gives up)
+- Graceful shutdown (waits 5s for clean exit)
+- No file logs (console only)
