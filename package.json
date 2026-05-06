@@ -5,10 +5,16 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "dev": "nodemon bot.js"
+    "dev": "nodemon bot.js",
+    "pm2:start": "pm2 start bot.js --name mbii-bot",
+    "pm2:stop": "pm2 stop mbii-bot",
+    "pm2:restart": "pm2 restart mbii-bot",
+    "pm2:logs": "pm2 logs mbii-bot",
+    "pm2:list": "pm2 list"
   },
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.14.1",
+    "pm2": "^7.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
