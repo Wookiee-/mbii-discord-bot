@@ -141,7 +141,8 @@ Each server gets its own Discord channel:
    - **Server Members Intent** — required for display names
 4. Copy the bot token to `config.json`
 5. Generate invite link with permissions: `Send Messages`, `Embed Links`, `Read Message History`
-   - OAuth2 scopes: `bot` + `applications.commands`
+   - OAuth2 scopes: `bot`
+   - Bot Permissions Integer: `68608` (Send Messages + Embed Links + Read Message History)
 
 ### 4. Game Server Configuration
 
