@@ -268,7 +268,7 @@ npm run pm2:stop
 npm run pm2:restart
 
 # Auto-start on system reboot (run once)
-pm2-startup  # Windows: pm2-service-install
+pm2 startup  # Windows: pm2-service-install
 pm2 save
 ```
 
