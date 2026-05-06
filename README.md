@@ -144,7 +144,7 @@ Each server gets its own Discord channel:
    - OAuth2 scopes: `bot`
    - Bot Permissions Integer: `82944` (Send Messages + Embed Links + Read Message History)
 
-6. **Guild Install** (optional — requires Discord Approval):
+6. **Guild Install** (optional — for private bots, Discord Approval required for App Directory):
    - In Discord Developer Portal → Installation → "Install Link"
    - Select "Guild Install" and choose default channel
    - This allows users to add the bot directly from your Discord server link
