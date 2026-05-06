@@ -144,6 +144,12 @@ Each server gets its own Discord channel:
    - OAuth2 scopes: `bot`
    - Bot Permissions Integer: `82944` (Send Messages + Embed Links + Read Message History)
 
+6. **Guild Install** (optional — requires Discord Approval):
+   - In Discord Developer Portal → Installation → "Install Link"
+   - Select "Guild Install" and choose default channel
+   - This allows users to add the bot directly from your Discord server link
+   - Requires your app to be approved by Discord for public bots
+
 ### 4. Game Server Configuration
 
 Each JK:A server needs:
