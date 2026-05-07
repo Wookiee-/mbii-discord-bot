@@ -48,7 +48,8 @@ client.on('messageCreate', async (message) => {
   const gameMsg = message.content.trim();
   if (!gameMsg) return;
 
-  const displayName = message.author.displayName;
+  // Use server nickname if available, otherwise fall back to username
+  const displayName = message.member?.nickname || message.author.username;
   
   const success = await serverManager.sendToServer(serverId, displayName, gameMsg);
   if (!success) {

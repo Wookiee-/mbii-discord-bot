@@ -178,18 +178,19 @@ class ServerManager {
 
           const chat = this.parseChatLine(trimmed);
           if (chat) {
-            if (chat.playerName.toLowerCase() === 'console') continue;
+            // Skip messages from Server (rcon svsay) and console
+            const senderName = chat.playerName.toLowerCase();
+            if (senderName === 'console' || senderName === 'server') continue;
 
             const cleanName = this.stripColors(this.normalizeName(chat.playerName));
             const cleanMsg = this.stripColors(chat.message);
-            const prefix = server.config.chatBridge.gameToDiscordPrefix || `[${serverId}] `;
 
             // Check if using plain text format or embed format
             const usePlainText = server.config.chatBridge.messageFormat === 'plain';
 
             if (usePlainText) {
-              // Plain text format: [Server] PlayerName: message
-              const plainMessage = `${prefix}${cleanName}: ${cleanMsg}`;
+              // Plain text format: PlayerName: message
+              const plainMessage = `${cleanName}: ${cleanMsg}`;
               server.chatChannel.send(plainMessage).catch(err => {
                 console.error(`[${serverId}] Failed to send to Discord:`, err.message);
               });
@@ -198,7 +199,7 @@ class ServerManager {
               const embed = {
                 color: server.config.embedColor || 0x5A9FD4,
                 author: {
-                  name: `${prefix}${cleanName}`,
+                  name: cleanName,
                   icon_url: server.config.embedIcon || 'https://i.imgur.com/JnLwO.png'
                 },
                 description: cleanMsg,
@@ -271,8 +272,9 @@ class ServerManager {
         await server.rcon.connect();
       }
 
-      const prefix = server.config.chatBridge.discordToGamePrefix || `[${discordUser}] `;
-      const formattedMsg = `${prefix}${message}`.substring(0, 200);
+      const prefix = server.config.chatBridge.discordToGamePrefix || '^5[^7Discord^5]:^7 ';
+      const capitalizeName = (name) => name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      const formattedMsg = `${prefix}${capitalizeName(discordUser)}: ${message}`.substring(0, 200);
       const rconCmd = `svsay \"${formattedMsg}\"`;
 
       await server.rcon.send(rconCmd);

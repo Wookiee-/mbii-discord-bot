@@ -16,8 +16,7 @@
       },
       "chatBridge": {
         "logFile": "games_mp.log",
-        "gameToDiscordPrefix": "[Main] ",
-        "discordToGamePrefix": "[Discord] ",
+        "discordToGamePrefix": "^5[^7Discord^5]:^7 ",
         "messageFormat": "embed"
       },
       "embedColor": 5939156
@@ -35,8 +34,7 @@
       },
       "chatBridge": {
         "logFile": "server2/games_mp.log",
-        "gameToDiscordPrefix": "[PvP] ",
-        "discordToGamePrefix": "[PvP] ",
+        "discordToGamePrefix": "^5[^7Discord^5]:^7 ",
         "messageFormat": "embed"
       },
       "embedColor": 16739179
