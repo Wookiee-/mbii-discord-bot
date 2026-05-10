@@ -25,21 +25,23 @@ class RconClient {
       }
 
       this.socket = dgram.createSocket('udp4');
-      
-      this.socket.on('error', (err) => {
+
+      this.socket.once('error', (err) => {
         console.error('[RCON] Socket error:', err.message);
         this.authenticated = false;
+        this.socket = null;
         reject(err);
       });
 
-      this.socket.on('close', () => {
+      this.socket.once('close', () => {
         this.authenticated = false;
+        this.socket = null;
       });
 
       // Bind to get port for responses
       this.socket.bind(() => {
         this.socket.setBroadcast(true);
-        
+
         // Try to authenticate immediately
         this.authenticate().then(() => {
           resolve();
@@ -224,7 +226,9 @@ class RconClient {
    */
   disconnect() {
     if (this.socket) {
-      this.socket.close();
+      try {
+        this.socket.close();
+      } catch (e) {}
       this.socket = null;
       this.authenticated = false;
     }
